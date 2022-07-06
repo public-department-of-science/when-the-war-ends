@@ -41,6 +41,23 @@ namespace SimpleStatistic
             {
                 var web = new HtmlWeb();
                 var doc = web.Load(url);
+                var dayStatistic = doc.DocumentNode.SelectNodes("/html/body/main/div/div/div[1]/div/div[1]/article/ul[2]/li");
+
+                foreach (var item in dayStatistic.Descendants())
+                {
+                    var keywords = new string[] { "Taнки", "ББМ", "Гармати", "РСЗВ", "Засоби ППО", "Особовий склад" };
+
+                    //Dictionary<int, string> keyValuePairs = new Dictionary<int, string>();
+                    //foreach (var keyword in keywords)
+                    //{
+                    //    var index = item.InnerText.IndexOf(keyword);
+                    //    if (index == -1)
+                    //    {
+
+                    //    }
+                    //    keyValuePairs.Add(index, keyword);
+                    //}
+                }
             }
         }
     }
