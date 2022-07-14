@@ -10,7 +10,7 @@ namespace SimpleStatistic
         {
             List<int> dateRange = new List<int>()
             {
-                90,100,110,120,130,
+                90, 100, 110, 120, 130, 140,
             };
 
             List<int> people = new List<int>()
@@ -20,8 +20,9 @@ namespace SimpleStatistic
                 32500, // 110
                 34500, // 120
                 36200, // 130
+                37870, // 140
             };
-            Console.WriteLine("\n\nPeople AVG");
+            Console.WriteLine("\nPeople AVG");
             var temp = AvgBy10DaysWholeRange(people, dateRange);
             foreach (var item in temp)
             {
@@ -35,9 +36,10 @@ namespace SimpleStatistic
                 97500, // 110
                 103500, // 120
                 108600, // 130
+                113610, // 140
             };
 
-            Console.WriteLine("\n\nPeople as injured AVG");
+            Console.WriteLine("\nPeople as injured AVG");
             temp = AvgBy10DaysWholeRange(peopleWithInjured, dateRange);
             foreach (var item in temp)
             {
@@ -51,9 +53,10 @@ namespace SimpleStatistic
                 1434, // 110
                 1507, // 120
                 1589, // 130
+                1667, // 140
             };
 
-            Console.WriteLine("\n\nTanks AVG");
+            Console.WriteLine("\nTanks AVG");
             temp = AvgBy10DaysWholeRange(tanks, dateRange);
             foreach (var item in temp)
             {
@@ -67,9 +70,10 @@ namespace SimpleStatistic
                 3503, // 110
                 3637, // 120
                 3754, // 130
+                3852, // 140
             };
 
-            Console.WriteLine("\n\nBMP AVG");
+            Console.WriteLine("\nBMP AVG");
             temp = AvgBy10DaysWholeRange(bmp, dateRange);
             foreach (var item in temp)
             {
@@ -85,7 +89,7 @@ namespace SimpleStatistic
             }
 
             var deltasPeopleInjured = CalculateDeltaWithPrevious10Days(peopleWithInjured, dateRange);
-            Console.WriteLine("\n\nDeltas People");
+            Console.WriteLine("\nDeltas People with injured");
             for (int i = 0, j = 1; i < deltasPeopleInjured.Count; i++, j++)
             {
                 Console.Write(dateRange[j].ToString() + " - " + dateRange[i].ToString() + "=");
@@ -93,7 +97,7 @@ namespace SimpleStatistic
             }
 
             var deltasTanks = CalculateDeltaWithPrevious10Days(tanks, dateRange);
-            Console.WriteLine("\n\nDeltas Tanks");
+            Console.WriteLine("\nDeltas Tanks");
             for (int i = 0, j = 1; i < deltasTanks.Count; i++, j++)
             {
                 Console.Write(dateRange[j].ToString() + " - " + dateRange[i].ToString() + "=");
@@ -101,7 +105,7 @@ namespace SimpleStatistic
             }
 
             var deltasBmp = CalculateDeltaWithPrevious10Days(bmp, dateRange);
-            Console.WriteLine("\n\nDeltas BMP");
+            Console.WriteLine("\nDeltas BMP");
             for (int i = 0, j = 1; i < deltasBmp.Count; i++, j++)
             {
                 Console.Write(dateRange[j].ToString() + " - " + dateRange[i].ToString() + "=");
@@ -115,14 +119,14 @@ namespace SimpleStatistic
                 Console.Write(peoplePerDay[i].ToString("0.00") + " ; ");
             }
 
-            Console.WriteLine("\n\nPer day people with injured (last 10 days avg from the delta)");
+            Console.WriteLine("\nPer day people with injured (last 10 days avg from the delta)");
             List<double> peopleWithInjuredPerDay = AvgPerLast10Days(deltasPeopleInjured);
             for (int i = 0, j = 1; i < peoplePerDay.Count; i++, j++)
             {
                 Console.Write(peopleWithInjuredPerDay[i].ToString("0.00") + " ; ");
             }
 
-            Console.WriteLine("\n\nPer day Tanks (last 10 days avg from the delta)");
+            Console.WriteLine("\nPer day Tanks (last 10 days avg from the delta)");
             List<double> tanksPerDay = AvgPerLast10Days(deltasTanks);
             for (int i = 0, j = 1; i < peoplePerDay.Count; i++, j++)
             {
@@ -150,21 +154,21 @@ namespace SimpleStatistic
             }
 
             var peopleEndsAsInjuredAndDead = Get50_70_100Lost(peopleMax, peopleWithInjuredPerDay.Last(), peopleWithInjured.Last());
-            Console.WriteLine("\n\nPeople ends as dead + injured");
+            Console.WriteLine("\nPeople ends as dead + injured");
             for (int i = 0; i < peopleEndsAsInjuredAndDead.Count; i++)
             {
                 Console.WriteLine("To " + percentages[i].ToString() + "% = " + peopleEndsAsInjuredAndDead[i].ToString("0.00") + " ");
             }
 
             var tanksEnds = Get50_70_100Lost(tanksMax, tanksPerDay.Last(), tanks.Last());
-            Console.WriteLine("\n\nTanks ends");
+            Console.WriteLine("\nTanks ends");
             for (int i = 0; i < tanksEnds.Count; i++)
             {
                 Console.WriteLine("To " + percentages[i].ToString() + "% = " + tanksEnds[i].ToString("0.00") + " ");
             }
 
             var bmpEnds = Get50_70_100Lost(bmpMax, bmpPerDay.Last(), bmp.Last());
-            Console.WriteLine("\n\nBmp ends");
+            Console.WriteLine("\nBmp ends");
             for (int i = 0; i < bmpEnds.Count; i++)
             {
                 Console.WriteLine("To " + percentages[i].ToString() + "% = " + bmpEnds[i].ToString("0.00") + " ");
